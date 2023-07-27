@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int              @id @default(autoincrement())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  githubId        Int              @unique
+  name            String
+  email           String           @unique
+  image           String
+  role            Role             @default(USER)
+  createdScripts  Script[]
+  runningScripts  RunningScript[]
+  archivedScripts ArchivedScript[]
+
+  @@index([githubId])
+}
+
+model Script {
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  directory String      @unique
+  state     ScriptState @default(UNLISTED)
+  author    User        @relation(fields: [authorId], references: [id])
+  authorId  Int
+  name      String
+  tier      ScriptTier  @default(BASIC)
+  config    Json
+  script    String
+}
+
+model RunningScript {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  launcher    User       @relation(fields: [launcherId], references: [id])
+  launcherId  Int
+  name        String
+  tier        ScriptTier @default(BASIC)
+  config      Json
+  script      String
+  startParams Json
+  pid         Int
+  output      String
+}
+
+model ArchivedScript {
+  id          Int                 @id @default(autoincrement())
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  launcher    User                @relation(fields: [launcherId], references: [id])
+  launcherId  Int
+  state       ArchivedScriptState @default(FINISHED)
+  name        String
+  tier        ScriptTier          @default(BASIC)
+  config      Json
+  script      String
+  startParams Json
+  output      String
+}
+
+model RoleRequest {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  requestedRole Role     @default(PREMIUM)
+  email         String   @unique
+  fulfilled     Boolean  @default(false)
+}
+
+enum Role {
+  USER
+  PREMIUM
+  SUPERUSER
+  ADMIN
+}
+
+enum ScriptState {
+  UNLISTED
+  LISTED
+}
+
+enum ScriptTier {
+  BASIC
+  PREMIUM
+}
+
+enum ArchivedScriptState {
+  TERMINATED
+  FINISHED
+}
