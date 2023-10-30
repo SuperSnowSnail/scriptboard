@@ -12,7 +12,7 @@ const SignInButton = () => {
     setMounted(true);
   }, []);
 
-  if (mounted || status === "loading") {
+  if (!mounted || status === "loading") {
     return (
       <button
         type="button"
