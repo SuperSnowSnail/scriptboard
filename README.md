@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Scriptboard
 
-## Getting Started
+SAAS-like platform that allows you to run pre-configured shell scripts through user-friendly web-interface.
 
-First, run the development server:
+Right now this project in MVP (Minimum Viable Product) stage, which means it's stiil pretty much in active development, but most important parts of the application already working.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### OAuth sign in with GitHub
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+![Scriptboard_demo_signin](https://github.com/SuperSnowSnail/scriptboard/assets/118603847/9403a5be-c50e-4f75-846c-7d0c25f0f1e1)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Pricing page
 
-## Learn More
+![Scriptboard_demo_pricing](https://github.com/SuperSnowSnail/scriptboard/assets/118603847/8b133f1d-2f94-49ae-9dc3-afeedbf300fa)
 
-To learn more about Next.js, take a look at the following resources:
+#### Editing script
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Scriptboard_demo_editing](https://github.com/SuperSnowSnail/scriptboard/assets/118603847/800dbbef-2a42-406f-9a33-4ce113bd898c)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Running script
 
-## Deploy on Vercel
+![Scriptboard_demo_running](https://github.com/SuperSnowSnail/scriptboard/assets/118603847/35f8853a-d717-473b-a51c-a30b89f71019)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### TODOs and known issues:
+- Add live counter (through SSE) of running scripts on sidebar.
+- Add speed-dial of scripts' configurations on sidebar.
+- Add script's output types other than 'plain'.
+- Add missing restrainings for different user roles (most of them already implemented).
+- Add CLI for editing scripts from console.
+- Add documentation.
+- Add cut-down demo version as playground.
+- Change all icons to [flowbite-react-icons](https://github.com/SuperSnowSnail/flowbite-react-icons).
+- Fix visual bug with login button: when button loading on pricing page, button sizes are not correct.
