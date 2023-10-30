@@ -182,7 +182,7 @@ const Inner = () => {
             />
           </div>
           <Checkbox path="listed" formik={editFormik} label="Listed script" />
-          <heckbox path="premium" formik={editFormik} label="Premium script" />
+          <Checkbox path="premium" formik={editFormik} label="Premium script" />
         </div>
       </div>
     </div>
